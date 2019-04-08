@@ -36,14 +36,19 @@ public class ImgGenerator {
     }
     public static BufferedImage readImage(String path){
         try {
-            List<String> lines = Files.lines(new File(path).toPath()).collect(Collectors.toList());
-            int x = lines.parallelStream().map(n ->Integer.parseInt(n.split(":")[0].split(",")[0]))
-                    .reduce(Integer::max).orElseThrow(()->new IllegalStateException("MMMMM"));
-            int y = lines.parallelStream().map(n ->Integer.parseInt(n.split(":")[0].split(",")[1]))
-                    .reduce(Integer::max).orElseThrow(()->new IllegalStateException("MMMMM"));
-            System.out.println("X: "+x+"Y: "+y);
+            List<ds> points = Files.lines(new File(path).toPath())
+                    .parallel().map(n->ds.from(n)).collect(Collectors.toList());
+            int x = points.parallelStream()
+                    .map(n->n.x)
+                    .reduce(Integer::max)
+                    .orElseThrow(()->new IllegalStateException("No Points"));
+            int y = points.parallelStream()
+                    .map(n->n.y)
+                    .reduce(Integer::max)
+                    .orElseThrow(()->new IllegalStateException("No Points"));
+            System.out.println("X: "+x+" Y: "+y);
             final BufferedImage ret = new BufferedImage(x+1,y+1,BufferedImage.TYPE_INT_ARGB);
-            lines.parallelStream().map(ds::from).forEach(n->{
+            points.parallelStream().forEach(n->{
                 ret.setRGB(n.x, n.y, n.c.getRGB());
             });
             return ret;
