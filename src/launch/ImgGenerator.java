@@ -40,7 +40,10 @@ public class ImgGenerator {
     public static BufferedImage readImage(String path) {
         try {
             List<ds> points = Files.lines(new File(path).toPath())
-                    .parallel().map(n -> ds.from(n)).collect(Collectors.toList());
+                    .parallel()
+                    .filter(n->!n.isEmpty())
+                    .map(n -> ds.from(n))
+                    .collect(Collectors.toList());
             int x = points.parallelStream()
                     .map(n -> n.x)
                     .reduce(Integer::max)
