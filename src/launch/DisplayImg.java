@@ -6,10 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
-public final class DisplayImg extends JFrame{
+public final class DisplayImg extends JFrame {
+
     private final BufferedImage dispImg;
 
-    public DisplayImg(BufferedImage img){
+    public DisplayImg(BufferedImage img) {
         super("Image");
         this.dispImg = img;
         this.setSize(new Dimension(this.dispImg.getWidth(), this.dispImg.getHeight()));
@@ -18,10 +19,10 @@ public final class DisplayImg extends JFrame{
         setVisible(true);
         this.repaint();
     }
-    
+
     @Override
-    public void paint(Graphics go){
-        Graphics2D g = (Graphics2D)go;
+    public void paint(Graphics go) {
+        Graphics2D g = (Graphics2D) go;
         g.drawImage(dispImg, null, 0, 0);
     }
 

@@ -8,15 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public final class PathGetter extends JFrame{
+public final class PathGetter extends JFrame {
+
     private String path = null;
     private final JLabel label = new JLabel("Input Path:");
     private final JTextField inLine = new JTextField();
     private final JButton submit = new JButton("Submit");
     private final ActionListener submitAction = e -> {
-            this.path = inLine.getText();
+        this.path = inLine.getText();
     };
-    private PathGetter(){
+
+    private PathGetter() {
         super("Nathan Image Viewer");
         getContentPane().setLayout(new FlowLayout());
         getContentPane().add(label);
@@ -24,13 +26,14 @@ public final class PathGetter extends JFrame{
         getContentPane().add(submit);
         inLine.setPreferredSize(new Dimension(300, 30));
         getContentPane().revalidate();
-        setSize(new Dimension(500,80));
+        setSize(new Dimension(500, 80));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         submit.addActionListener(this.submitAction);
         inLine.addActionListener(this.submitAction);
     }
-    private String getPath(){
-        while(path == null){
+
+    private String getPath() {
+        while (path == null) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -39,14 +42,15 @@ public final class PathGetter extends JFrame{
         }
         return path;
     }
-    public static String getInPath(){
+
+    public static String getInPath() {
         PathGetter p = null;
-        try{
-        p = new PathGetter();
-        p.setVisible(true);
-        p.getContentPane().validate();
-        return p.getPath();
-        }finally{
+        try {
+            p = new PathGetter();
+            p.setVisible(true);
+            p.getContentPane().validate();
+            return p.getPath();
+        } finally {
             p.dispose();
         }
     }
