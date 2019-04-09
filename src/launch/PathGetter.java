@@ -25,7 +25,6 @@ public final class PathGetter extends JFrame {
         getContentPane().add(inLine);
         getContentPane().add(submit);
         inLine.setPreferredSize(new Dimension(300, 30));
-        getContentPane().revalidate();
         setSize(new Dimension(500, 80));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         submit.addActionListener(this.submitAction);
@@ -48,7 +47,6 @@ public final class PathGetter extends JFrame {
         try {
             p = new PathGetter();
             p.setVisible(true);
-            p.getContentPane().validate();
             return p.getPath();
         } finally {
             p.dispose();

@@ -42,7 +42,7 @@ public class ImgGenerator {
             List<ds> points = Files.lines(new File(path).toPath())
                     .parallel()
                     .filter(n->!n.isEmpty())
-                    .map(n -> ds.from(n))
+                    .map(ds::from)
                     .collect(Collectors.toList());
             int x = points.parallelStream()
                     .map(n -> n.x)

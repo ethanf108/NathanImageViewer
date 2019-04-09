@@ -15,7 +15,7 @@ public final class DisplayImg extends JFrame {
         this.dispImg = img;
         this.setSize(new Dimension(this.dispImg.getWidth(), this.dispImg.getHeight()));
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         this.repaint();
     }
